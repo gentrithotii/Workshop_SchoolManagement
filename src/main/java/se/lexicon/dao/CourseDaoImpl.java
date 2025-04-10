@@ -1,9 +1,66 @@
 package se.lexicon.dao;
 
+import se.lexicon.dao.interfaces.ICourseDao;
 import se.lexicon.model.Course;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
-public class CourseDaoImpl {
+public class CourseDaoImpl implements ICourseDao {
     private List<Course> courses;
+
+    @Override
+    public Course save(Course course) {
+        if (course == null) {
+            throw new IllegalArgumentException("Student can't be null");
+        }
+        findAll().add(course);
+        return course;
+    }
+
+    @Override
+    public Course findById(int id) {
+        for (Course courseItem : findAll()) {
+            if (courseItem.getId() == id) {
+                return courseItem;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Course> findByName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name can't be null or empty");
+        }
+        List<Course> byNameList = new ArrayList<>();
+        for (Course courseItem : findAll()) {
+            if (courseItem.getCourseName().equals(name)) {
+                byNameList.add(courseItem);
+            }
+        }
+        return byNameList;
+    }
+
+    @Override
+    public List<Course> findByDate(LocalDate date) {
+        List<Course> byDateList = new ArrayList<>();
+        for (Course courseItem : findAll()) {
+            if (courseItem.getStartDate().equals(date)) {
+                byDateList.add(courseItem);
+            }
+        }
+        return byDateList;
+    }
+
+    @Override
+    public List<Course> findAll() {
+        return this.courses;
+    }
+
+    @Override
+    public boolean delete(Course course) {
+        return findAll().remove(course);
+    }
 }

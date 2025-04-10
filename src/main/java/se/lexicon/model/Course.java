@@ -1,15 +1,29 @@
 package se.lexicon.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Course {
+    private static int sequencer = 1;
     private int id;
     private String courseName;
     private LocalDate startDate;
     private int weekDuration;
-    private List<Student> students;
+    private final List<Student> students;
 
+    public Course(String courseName, LocalDate startDate, int weekDuration) {
+        this.id = getNextId();
+        setCourseName(courseName);
+        setStartDate(startDate);
+        setWeekDuration(weekDuration);
+        this.students = getStudents() == null ? new ArrayList<>() : getStudents();
+    }
+
+    private int getNextId() {
+        return sequencer++;
+    }
 
     public String getCourseName() {
         return courseName;
@@ -47,6 +61,38 @@ public class Course {
         return students;
     }
 
+    public void register(Student student) {
+        getStudents().add(student);
+        System.out.println("Student added");
+    }
+
+    public void unregister(Student student) {
+        getStudents().remove(student);
+        System.out.println("Student unregistered");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return getId() == course.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", courseName='" + courseName + '\'' +
+                ", startDate=" + startDate +
+                ", weekDuration=" + weekDuration +
+                ", students=" + students +
+                '}';
+    }
 }
 
 
