@@ -40,7 +40,7 @@ public class CourseDAOImpl implements ICourseDAO {
         }
         List<Course> byNameList = new ArrayList<>();
         for (Course courseItem : findAll()) {
-            if (courseItem.getCourseName().equals(name)) {
+            if (courseItem.getCourseName().equalsIgnoreCase(name)) {
                 byNameList.add(courseItem);
             }
         }
