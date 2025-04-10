@@ -11,6 +11,7 @@ public class SeedData {
 
 
     public static void loadData(StudentDAOImpl studentDAO, CourseDAOImpl courseDAO) {
+
         //Students
         Student student1 = studentDAO.save(new Student("John Doe", "john.doe@example.com", "123 Main St"));
         Student student2 = studentDAO.save(new Student("Jane Smith", "jane.smith@example.com", "456 Elm St"));
@@ -35,7 +36,6 @@ public class SeedData {
         Course course9 = courseDAO.save(new Course("DevOps Essentials", LocalDate.of(2025, 4, 13), 13));
         Course course10 = courseDAO.save(new Course("Cybersecurity", LocalDate.of(2025, 4, 25), 11));
     }
-
 
 }
 

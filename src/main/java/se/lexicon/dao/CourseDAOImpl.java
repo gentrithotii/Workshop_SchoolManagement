@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourseDAOImpl implements ICourseDAO {
-    private List<Course> courses;
+    private final List<Course> courses;
+
+    public CourseDAOImpl() {
+        this.courses = findAll() == null ? new ArrayList<>() : findAll();
+    }
 
     @Override
     public Course save(Course course) {

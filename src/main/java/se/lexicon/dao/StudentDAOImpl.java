@@ -7,7 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDAOImpl implements IStudentDAO {
-    private List<Student> students;
+    private final List<Student> students;
+
+    public StudentDAOImpl() {
+        this.students = findAll() == null ? new ArrayList<>() : findAll();
+    }
 
     @Override
     public Student save(Student student) {
