@@ -1,13 +1,12 @@
 package se.lexicon.dao;
 
-import se.lexicon.dao.interfaces.IStudentDao;
+import se.lexicon.dao.interfaces.IStudentDAO;
 import se.lexicon.model.Student;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-public class StudentDaoImpl implements IStudentDao {
+public class StudentDAOImpl implements IStudentDAO {
     private List<Student> students;
 
     @Override

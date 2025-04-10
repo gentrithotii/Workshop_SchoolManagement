@@ -1,13 +1,13 @@
 package se.lexicon.dao;
 
-import se.lexicon.dao.interfaces.ICourseDao;
+import se.lexicon.dao.interfaces.ICourseDAO;
 import se.lexicon.model.Course;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseDaoImpl implements ICourseDao {
+public class CourseDAOImpl implements ICourseDAO {
     private List<Course> courses;
 
     @Override

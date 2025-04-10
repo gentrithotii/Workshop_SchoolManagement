@@ -4,7 +4,7 @@ import se.lexicon.model.Student;
 
 import java.util.List;
 
-public interface IStudentDao {
+public interface IStudentDAO {
     public Student save(Student student);
 
     public Student findByEmail(String email);

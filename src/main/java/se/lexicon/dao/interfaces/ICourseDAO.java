@@ -5,7 +5,7 @@ import se.lexicon.model.Course;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface ICourseDao {
+public interface ICourseDAO {
     public Course save(Course course);
 
     public Course findById(int id);
