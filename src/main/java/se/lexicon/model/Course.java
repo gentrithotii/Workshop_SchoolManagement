@@ -73,17 +73,17 @@ public class Course {
         System.out.println("Student unregistered");
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Course course = (Course) o;
-        return getId() == course.getId();
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Course course = (Course) o;
+//        return getId() == course.getId();
+//    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
+//    @Override
+//    public int hashCode() {
+//        return Objects.hashCode(getId());
+//    }
 
     @Override
     public String toString() {
