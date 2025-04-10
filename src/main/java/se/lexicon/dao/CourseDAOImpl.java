@@ -56,7 +56,7 @@ public class CourseDAOImpl implements ICourseDAO {
 
     @Override
     public List<Course> findAll() {
-        return this.courses;
+        return courses;
     }
 
     @Override

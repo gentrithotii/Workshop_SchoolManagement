@@ -14,6 +14,7 @@ public class StudentDAOImpl implements IStudentDAO {
         if (student == null) {
             throw new IllegalArgumentException("Student cant be null");
         }
+        findAll().add(student);
         return student;
     }
 
@@ -24,7 +25,7 @@ public class StudentDAOImpl implements IStudentDAO {
         }
 
         for (Student studentItem : findAll()) {
-            if (studentItem.getEmail().equals(email)) {
+            if (studentItem.getEmail().equalsIgnoreCase(email)) {
                 return studentItem;
             }
         }
@@ -39,7 +40,7 @@ public class StudentDAOImpl implements IStudentDAO {
 
         List<Student> studentListByName = new ArrayList<>();
         for (Student studentItem : findAll()) {
-            if (studentItem.getName().equals(name)) {
+            if (studentItem.getName().equalsIgnoreCase(name)) {
                 studentListByName.add(studentItem);
             }
         }
@@ -58,7 +59,7 @@ public class StudentDAOImpl implements IStudentDAO {
 
     @Override
     public List<Student> findAll() {
-        return this.students;
+        return students;
     }
 
     @Override
