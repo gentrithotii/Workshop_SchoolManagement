@@ -30,6 +30,9 @@ public class Student {
     }
 
     public void setName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name can't be null or empty");
+        }
         this.name = name;
     }
 
@@ -38,6 +41,9 @@ public class Student {
     }
 
     public void setEmail(String email) {
+        if (email == null || email.isEmpty()) {
+            throw new IllegalArgumentException("Email can't be null or empty");
+        }
         this.email = email;
     }
 
@@ -63,6 +69,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" + "id=" + id + ", name='" + name + '\'' + ", email='" + email + '\'' + ", address='" + address + '\'' + '}';
+        return "Student{" + "id=" + getId() + ", name='" + getName() + '\'' + ", email='" + getEmail() + '\'' + ", address='" + getAddress() + '\'' + '}';
     }
 }

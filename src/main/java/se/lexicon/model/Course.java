@@ -30,6 +30,9 @@ public class Course {
     }
 
     public void setCourseName(String courseName) {
+        if (courseName == null || courseName.isEmpty()) {
+            throw new IllegalArgumentException("Username can't be null");
+        }
         this.courseName = courseName;
     }
 
@@ -38,6 +41,9 @@ public class Course {
     }
 
     public void setStartDate(LocalDate startDate) {
+        if (startDate == null) {
+            throw new IllegalArgumentException("Username can't be null");
+        }
         this.startDate = startDate;
     }
 
@@ -51,10 +57,6 @@ public class Course {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public List<Student> getStudents() {
@@ -85,13 +87,7 @@ public class Course {
 
     @Override
     public String toString() {
-        return "Course{" +
-                "id=" + id +
-                ", courseName='" + courseName + '\'' +
-                ", startDate=" + startDate +
-                ", weekDuration=" + weekDuration +
-                ", students=" + students +
-                '}';
+        return "Course{" + "id=" + getId() + ", courseName='" + getCourseName() + '\'' + ", startDate=" + getStartDate() + ", weekDuration=" + getWeekDuration() + ", students=" + getStudents() + '}';
     }
 }
 
