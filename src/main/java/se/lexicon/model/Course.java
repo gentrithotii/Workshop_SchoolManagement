@@ -31,7 +31,7 @@ public class Course {
 
     public void setCourseName(String courseName) {
         if (courseName == null || courseName.isEmpty()) {
-            throw new IllegalArgumentException("Username can't be null");
+            throw new IllegalArgumentException("Course name can't be null");
         }
         this.courseName = courseName;
     }
@@ -42,7 +42,7 @@ public class Course {
 
     public void setStartDate(LocalDate startDate) {
         if (startDate == null) {
-            throw new IllegalArgumentException("Username can't be null");
+            throw new IllegalArgumentException("Startdate can't be null");
         }
         this.startDate = startDate;
     }
@@ -52,6 +52,9 @@ public class Course {
     }
 
     public void setWeekDuration(int weekDuration) {
+        if (weekDuration <= 0) {
+            throw new IllegalArgumentException("Cant have a week 0 or less!");
+        }
         this.weekDuration = weekDuration;
     }
 
@@ -73,17 +76,17 @@ public class Course {
         System.out.println("Student unregistered");
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Course course = (Course) o;
-//        return getId() == course.getId();
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return getId() == course.getId();
+    }
 
-//    @Override
-//    public int hashCode() {
-//        return Objects.hashCode(getId());
-//    }
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
+    }
 
     @Override
     public String toString() {

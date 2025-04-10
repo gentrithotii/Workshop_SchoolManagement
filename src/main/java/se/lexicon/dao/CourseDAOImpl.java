@@ -17,7 +17,7 @@ public class CourseDAOImpl implements ICourseDAO {
     @Override
     public Course save(Course course) {
         if (course == null) {
-            throw new IllegalArgumentException("Student can't be null");
+            throw new IllegalArgumentException("Course can't be null");
         }
         findAll().add(course);
         return course;
