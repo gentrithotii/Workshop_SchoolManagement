@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class Course {
     private static int sequencer = 1;
-    private int id;
+    private final int id;
     private String courseName;
     private LocalDate startDate;
     private int weekDuration;
