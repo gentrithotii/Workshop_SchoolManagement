@@ -39,7 +39,6 @@ class CourseTest {
         assertEquals(1, course.getStudents().size());
         assertTrue(course.getStudents().contains(student));
     }
-
     @Test
     @DisplayName("Check if student is unregistered")
     void unregisterStudentTest() {
