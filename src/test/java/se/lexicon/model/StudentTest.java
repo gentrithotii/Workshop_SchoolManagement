@@ -39,7 +39,7 @@ class StudentTest {
         Student student1 = new Student("Name1", "email1@example.com", "Address1");
         Student student2 = new Student("Name2", "email2@example.com", "Address2");
 
-        // Since IDs are auto-incremented, they shouldn't match
+
         assertNotEquals(student1, student2);
         assertNotEquals(student1.hashCode(), student2.hashCode());
     }
