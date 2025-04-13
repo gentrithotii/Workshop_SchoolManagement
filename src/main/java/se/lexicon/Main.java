@@ -9,12 +9,9 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        StudentDAOImpl studentDao = new StudentDAOImpl();
-        CourseDAOImpl courseDao = new CourseDAOImpl();
 
-        SeedData.loadData(studentDao, courseDao);
-
-
+        MenuUi menuUi = new MenuUi();
+        menuUi.startSystemMenu();
     }
 
 }
