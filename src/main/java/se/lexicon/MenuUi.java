@@ -75,8 +75,8 @@ public class MenuUi {
                 break;
 
             case 5:
-                getSchoolSystemManager().searchForStudentOrCourse(getUserInput());
-
+                String result = getSchoolSystemManager().searchForStudentOrCourse(getUserInput());
+                System.out.println("Found: " + result);
                 break;
             case 6:
                 System.out.println("6 Choice");

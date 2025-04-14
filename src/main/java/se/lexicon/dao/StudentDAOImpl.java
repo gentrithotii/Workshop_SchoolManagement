@@ -7,10 +7,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDAOImpl implements IStudentDAO {
+    private static volatile StudentDAOImpl instance;
     private final List<Student> students;
 
-    public StudentDAOImpl() {
+    private StudentDAOImpl() {
         this.students = findAll() == null ? new ArrayList<>() : findAll();
+    }
+
+    public static StudentDAOImpl getInstance() {
+        StudentDAOImpl result = instance;
+        if (result != null) {
+            return result;
+        }
+        synchronized (StudentDAOImpl.class) {
+            if (instance == null) {
+                instance = new StudentDAOImpl();
+            }
+            return instance;
+        }
     }
 
     @Override

@@ -13,8 +13,8 @@ public class SchoolSystemManager {
     private final CourseDAOImpl courseDAO;
 
     public SchoolSystemManager() {
-        studentDAO = new StudentDAOImpl();
-        courseDAO = new CourseDAOImpl();
+        studentDAO = StudentDAOImpl.getInstance();
+        courseDAO = CourseDAOImpl.getInstance();
     }
 
     private CourseDAOImpl getCourseDAO() {
@@ -96,7 +96,7 @@ public class SchoolSystemManager {
         return foundStudent;
     }
 
-    public <T> T searchForStudentOrCourse(Scanner sc) {
+    public String searchForStudentOrCourse(Scanner sc) {
         System.out.println("1. To find a Student");
         System.out.println("2. To find a Course");
         System.out.print("Do you want to search for an Student or a course: ");
@@ -107,18 +107,17 @@ public class SchoolSystemManager {
                 System.out.println("Enter the Email of the Student you want to find: ");
                 String searchStudentEmail = sc.nextLine();
                 Student foundUser = getStudentDAO().findByEmail(searchStudentEmail);
-                return (T) foundUser;
+                return foundUser.toString();
             case "2":
                 System.out.println("Enter the  course id: ");
                 int searchCourseById = Integer.parseInt(sc.nextLine());
                 Course foundCourse = getCourseDAO().findById(searchCourseById);
                 sc.nextLine();
-                return (T) foundCourse;
+                return foundCourse.toString();
             default:
                 System.out.println("Wrong Input");
                 break;
         }
-
         return null;
     }
 }

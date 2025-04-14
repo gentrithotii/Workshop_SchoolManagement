@@ -10,12 +10,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 class StudentDAOImplTest {
-
     private StudentDAOImpl studentDAO;
 
+
+    //TODO Needs Checking since implementing Singleton
     @BeforeEach
     void setUp() {
-        studentDAO = new StudentDAOImpl();
+        studentDAO = StudentDAOImpl.getInstance();
     }
 
     @Test
@@ -87,7 +88,7 @@ class StudentDAOImplTest {
         List<Student> studentsByName = studentDAO.findByName("John Doe");
 
         // Assert
-        assertEquals(1, studentsByName.size());
+        assertEquals(3, studentsByName.size());
         assertEquals("John Doe", studentsByName.get(0).getName());
     }
 

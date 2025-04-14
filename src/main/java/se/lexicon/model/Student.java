@@ -3,7 +3,7 @@ package se.lexicon.model;
 import java.util.Objects;
 
 public class Student {
-    private static int sequencer;
+    private static int sequencer = 1;
     private final int id;
     private String name;
     private String email;

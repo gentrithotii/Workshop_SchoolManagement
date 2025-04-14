@@ -15,9 +15,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class CourseDAOImplTest {
     private CourseDAOImpl courseDAO;
 
+    //TODO Needs Checking since implementing Singleton
+
     @BeforeEach
     void setUp() {
-        courseDAO = new CourseDAOImpl();
+        courseDAO = CourseDAOImpl.getInstance();
     }
 
     @Test
@@ -127,7 +129,7 @@ class CourseDAOImplTest {
     @Test
     @DisplayName("Should throw exception when course name is empty")
     void saveEmptyNameTest() {
-        
+
         //Assert
         assertThrows(IllegalArgumentException.class, () -> {
             new Course("", LocalDate.now(), 10);
