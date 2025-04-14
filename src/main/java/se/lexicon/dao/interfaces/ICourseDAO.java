@@ -6,15 +6,17 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface ICourseDAO {
-    public Course save(Course course);
+    Course save(Course course);
 
-    public Course findById(int id);
+    Course findById(int id);
 
-    public List<Course> findByName(String name);
+    List<Course> findByName(String name);
 
-    public List<Course> findByDate(LocalDate date);
+    List<Course> findByDate(LocalDate date);
 
-    public List<Course> findAll();
+    List<Course> findAll();
 
-    public boolean delete(Course course);
+    Course updateCourse(Course course);
+
+    boolean delete(Course course);
 }

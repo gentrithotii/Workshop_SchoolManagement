@@ -2,6 +2,7 @@ package se.lexicon.data;
 
 import se.lexicon.dao.CourseDAOImpl;
 import se.lexicon.dao.StudentDAOImpl;
+import se.lexicon.dataseed.SeedData;
 import se.lexicon.model.Course;
 import se.lexicon.model.Student;
 
@@ -13,8 +14,9 @@ public class SchoolSystemManager {
     private final CourseDAOImpl courseDAO;
 
     public SchoolSystemManager() {
-        studentDAO = StudentDAOImpl.getInstance();
-        courseDAO = CourseDAOImpl.getInstance();
+        this.studentDAO = StudentDAOImpl.getInstance();
+        this.courseDAO = CourseDAOImpl.getInstance();
+        SeedData.loadData(studentDAO, courseDAO);
     }
 
     private CourseDAOImpl getCourseDAO() {
@@ -119,5 +121,103 @@ public class SchoolSystemManager {
                 break;
         }
         return null;
+    }
+
+    public String updateStudentOrCourse(Scanner sc) {
+        System.out.println("1. To update a Student");
+        System.out.println("2. To update a Course");
+        System.out.print("Do you want to Update a Student or a course: ");
+        String userInput = sc.nextLine();
+
+        switch (userInput) {
+            case "1":
+
+                return choiceUpdateOperationChoice(sc, TypeOfModel.STUDENT);
+            case "2":
+                return choiceUpdateOperationChoice(sc, TypeOfModel.COURSE);
+            default:
+                System.out.println("Wrong Input");
+                break;
+        }
+        return null;
+    }
+
+    private Student getToUpdateStudent(Scanner sc) {
+        System.out.println("Enter the Email of the Student you want to update: ");
+        String searchStudentEmail = sc.nextLine();
+        Student foundUser = getStudentDAO().findByEmail(searchStudentEmail);
+        choiceUpdateOperationChoice(sc, TypeOfModel.STUDENT);
+        return foundUser;
+    }
+
+    private Course getCourseToUpdate(Scanner sc) {
+        System.out.println("Enter the  course id you want to update: ");
+        String userInput = sc.nextLine();
+        Course foundCourse = getCourseDAO().findById(Integer.parseInt(userInput));
+        //Care here
+        choiceUpdateOperationChoice(sc, TypeOfModel.COURSE);
+        return foundCourse;
+    }
+
+    private String choiceUpdateOperationChoice(Scanner sc, TypeOfModel type) {
+        displayChoices(type);
+        System.out.print("Your choice: ");
+        String userInput = sc.nextLine();
+        if (type == TypeOfModel.STUDENT) {
+
+            Student studentToUpdate = getToUpdateStudent(sc);
+
+            switch (userInput) {
+                case "1":
+                    studentToUpdate.setName(userInput);
+                    break;
+                case "2":
+                    studentToUpdate.setEmail(userInput);
+                    break;
+                case "3":
+                    studentToUpdate.setAddress(userInput);
+                    break;
+                default:
+                    System.out.println("Wrong choice: ");
+                    break;
+            }
+            return studentToUpdate.toString();
+
+        } else {
+
+            Course courseToUpdate = getCourseToUpdate(sc);
+            switch (userInput) {
+                case "1":
+                    courseToUpdate.setCourseName(userInput);
+                    break;
+                case "2":
+                    LocalDate date = LocalDate.parse(userInput);
+                    courseToUpdate.setStartDate(date);
+                    break;
+                case "3":
+                    courseToUpdate.setWeekDuration(Integer.parseInt(userInput));
+                    sc.nextLine();
+                    break;
+                default:
+                    System.out.println("Wrong choice: ");
+                    break;
+            }
+            return courseToUpdate.toString();
+        }
+    }
+
+    private void displayChoices(TypeOfModel type) {
+        if (type == TypeOfModel.STUDENT) {
+            System.out.println("1. To update name: ");
+            System.out.println("2. To update email: ");
+            System.out.println("3. To update address: ");
+            System.out.println("\n");
+        } else {
+            System.out.println("1. To update Course name: ");
+            System.out.println("2. To update Course Date: ");
+            System.out.println("3. To update Week Duration: ");
+            System.out.println("\n");
+        }
+
     }
 }

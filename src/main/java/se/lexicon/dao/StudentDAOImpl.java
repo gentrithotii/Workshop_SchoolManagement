@@ -1,6 +1,7 @@
 package se.lexicon.dao;
 
 import se.lexicon.dao.interfaces.IStudentDAO;
+import se.lexicon.model.Course;
 import se.lexicon.model.Student;
 
 import java.util.ArrayList;
@@ -78,6 +79,14 @@ public class StudentDAOImpl implements IStudentDAO {
     @Override
     public List<Student> findAll() {
         return students;
+    }
+
+    public Student updateStudent(Student student) {
+        if (student == null) {
+            throw new IllegalArgumentException("Student can't have null or empty !");
+        }
+
+        return new Student(student.getName(), student.getEmail(), student.getAddress());
     }
 
     @Override

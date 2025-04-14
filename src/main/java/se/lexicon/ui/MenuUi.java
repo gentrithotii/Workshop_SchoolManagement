@@ -78,8 +78,8 @@ public class MenuUi {
                 System.out.println("Found: " + result);
                 break;
             case 6:
-                System.out.println("6 Choice");
-
+                String updatedStudentOrCourse = getSchoolSystemManager().updateStudentOrCourse(getUserInput());
+                System.out.println(updatedStudentOrCourse);
                 break;
             case 0:
                 setMenuLoop(false);

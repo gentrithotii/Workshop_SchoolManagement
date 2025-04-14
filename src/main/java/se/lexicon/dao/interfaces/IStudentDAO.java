@@ -1,19 +1,22 @@
 package se.lexicon.dao.interfaces;
 
+import se.lexicon.model.Course;
 import se.lexicon.model.Student;
 
 import java.util.List;
 
 public interface IStudentDAO {
-    public Student save(Student student);
+    Student save(Student student);
 
-    public Student findByEmail(String email);
+    Student findByEmail(String email);
 
-    public List<Student> findByName(String name);
+    List<Student> findByName(String name);
 
-    public Student findById(int id);
+    Student findById(int id);
 
-    public List<Student> findAll();
+    List<Student> findAll();
 
-    public boolean delete(Student student);
+    Student updateStudent(Student student);
+
+    boolean delete(Student student);
 }

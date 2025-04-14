@@ -3,6 +3,7 @@ package se.lexicon.dao;
 import se.lexicon.dao.interfaces.ICourseDAO;
 import se.lexicon.model.Course;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +66,9 @@ public class CourseDAOImpl implements ICourseDAO {
 
     @Override
     public List<Course> findByDate(LocalDate date) {
+        if (date == null) {
+            throw new DateTimeException("Date can't be null or the format is incorrect");
+        }
         List<Course> byDateList = new ArrayList<>();
         for (Course courseItem : findAll()) {
             if (courseItem.getStartDate().equals(date)) {
@@ -73,6 +77,15 @@ public class CourseDAOImpl implements ICourseDAO {
         }
         return byDateList;
     }
+
+    public Course updateCourse(Course course) {
+        if (course == null) {
+            throw new IllegalArgumentException("Course can't be null or empty !");
+        }
+
+        return new Course(course.getCourseName(), course.getStartDate(), course.getWeekDuration());
+    }
+
 
     @Override
     public List<Course> findAll() {
