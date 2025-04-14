@@ -68,12 +68,12 @@ public class Course {
 
     public void register(Student student) {
         getStudents().add(student);
-        System.out.println("Student added");
+        System.out.println("Student added" + student);
     }
 
     public void unregister(Student student) {
         getStudents().remove(student);
-        System.out.println("Student unregistered");
+        System.out.println("Student unregistered:" + student);
     }
 
     @Override

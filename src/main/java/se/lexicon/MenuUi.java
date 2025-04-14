@@ -44,7 +44,7 @@ public class MenuUi {
         System.out.println("4. To Remove a registered student from course");
         System.out.println("5. To Search for Students or Courses");
         System.out.println("6. To Update Student or Course");
-        System.out.println("0. To Exist the program");
+        System.out.println("0. To Exit the program");
 
     }
 
@@ -67,16 +67,15 @@ public class MenuUi {
                 getSchoolSystemManager().addStudentToList(getUserInput());
                 break;
             case 3:
-                System.out.println("3 Choice");
-
+                getSchoolSystemManager().registerStudentToCourse(getUserInput());
                 break;
             case 4:
-                System.out.println("4 Choice");
+                getSchoolSystemManager().unRegisterStudentFromCourse(getUserInput());
 
                 break;
 
             case 5:
-                System.out.println("5 Choice");
+                getSchoolSystemManager().searchForStudentOrCourse(getUserInput());
 
                 break;
             case 6:
