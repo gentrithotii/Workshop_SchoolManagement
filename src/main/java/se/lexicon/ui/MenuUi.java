@@ -1,4 +1,4 @@
-package se.lexicon;
+package se.lexicon.ui;
 
 import se.lexicon.data.SchoolSystemManager;
 
