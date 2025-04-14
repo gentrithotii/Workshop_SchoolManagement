@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class MenuUi {
     private final Scanner userInput;
-    private boolean menuLoop = true;
+    private boolean menuLoop;
     private final SchoolSystemManager schoolSystemManager;
 
     public MenuUi() {
@@ -14,23 +14,24 @@ public class MenuUi {
         this.schoolSystemManager = new SchoolSystemManager();
     }
 
-    public Scanner getUserInput() {
+    private Scanner getUserInput() {
         return userInput;
     }
 
-    public SchoolSystemManager getSchoolSystemManager() {
+    private SchoolSystemManager getSchoolSystemManager() {
         return schoolSystemManager;
     }
 
-    public boolean isMenuLoop() {
+    private boolean isMenuLoop() {
         return menuLoop;
     }
 
-    public void setMenuLoop(boolean menuLoop) {
+    private void setMenuLoop(boolean menuLoop) {
         this.menuLoop = menuLoop;
     }
 
     public void startSystemMenu() {
+        setMenuLoop(true);
         while (isMenuLoop()) {
             printUserChoices();
             menuOperations();
@@ -54,7 +55,7 @@ public class MenuUi {
         return getUserInput().nextInt();
     }
 
-    public void menuOperations() {
+    private void menuOperations() {
 
         int choice = userMenuChoice();
         getUserInput().nextLine();
@@ -71,9 +72,7 @@ public class MenuUi {
                 break;
             case 4:
                 getSchoolSystemManager().unRegisterStudentFromCourse(getUserInput());
-
                 break;
-
             case 5:
                 String result = getSchoolSystemManager().searchForStudentOrCourse(getUserInput());
                 System.out.println("Found: " + result);

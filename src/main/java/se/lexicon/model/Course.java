@@ -42,7 +42,7 @@ public class Course {
 
     public void setStartDate(LocalDate startDate) {
         if (startDate == null) {
-            throw new IllegalArgumentException("Startdate can't be null");
+            throw new IllegalArgumentException("Start date can't be null");
         }
         this.startDate = startDate;
     }
