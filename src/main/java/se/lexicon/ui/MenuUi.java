@@ -75,7 +75,7 @@ public class MenuUi {
                 break;
             case 5:
                 String result = getSchoolSystemManager().searchForStudentOrCourse(getUserInput());
-                System.out.println("Found: " + result);
+                System.out.println(result);
                 break;
             case 6:
                 String updatedStudentOrCourse = getSchoolSystemManager().updateStudentOrCourse(getUserInput());

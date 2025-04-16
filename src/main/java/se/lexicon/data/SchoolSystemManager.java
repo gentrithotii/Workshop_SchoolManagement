@@ -114,7 +114,7 @@ public class SchoolSystemManager {
                 System.out.println("Enter the  course id: ");
                 int searchCourseById = Integer.parseInt(sc.nextLine());
                 Course foundCourse = getCourseDAO().findById(searchCourseById);
-                sc.nextLine();
+
                 return foundCourse.toString();
             default:
                 System.out.println("Wrong Input");
@@ -131,7 +131,6 @@ public class SchoolSystemManager {
 
         switch (userInput) {
             case "1":
-
                 return choiceUpdateOperationChoice(sc, TypeOfModel.STUDENT);
             case "2":
                 return choiceUpdateOperationChoice(sc, TypeOfModel.COURSE);
@@ -144,43 +143,45 @@ public class SchoolSystemManager {
 
     private Student getToUpdateStudent(Scanner sc) {
         System.out.println("Enter the Email of the Student you want to update: ");
-        String searchStudentEmail = sc.nextLine();
-        Student foundUser = getStudentDAO().findByEmail(searchStudentEmail);
-        choiceUpdateOperationChoice(sc, TypeOfModel.STUDENT);
-        return foundUser;
+        return getStudentDAO().findByEmail(sc.nextLine());
     }
 
     private Course getCourseToUpdate(Scanner sc) {
         System.out.println("Enter the  course id you want to update: ");
-        String userInput = sc.nextLine();
-        Course foundCourse = getCourseDAO().findById(Integer.parseInt(userInput));
-        //Care here
-        choiceUpdateOperationChoice(sc, TypeOfModel.COURSE);
-        return foundCourse;
+
+        return getCourseDAO().findById(Integer.parseInt(sc.nextLine()));
     }
 
     private String choiceUpdateOperationChoice(Scanner sc, TypeOfModel type) {
         displayChoices(type);
         System.out.print("Your choice: ");
         String userInput = sc.nextLine();
+
         if (type == TypeOfModel.STUDENT) {
 
             Student studentToUpdate = getToUpdateStudent(sc);
 
             switch (userInput) {
                 case "1":
-                    studentToUpdate.setName(userInput);
+                    System.out.print("Enter the name :");
+                    String userName = sc.nextLine();
+                    studentToUpdate.setName(userName);
                     break;
                 case "2":
-                    studentToUpdate.setEmail(userInput);
+                    System.out.print("Enter the Email you want to update :");
+                    String userEmail = sc.nextLine();
+                    studentToUpdate.setEmail(userEmail);
                     break;
                 case "3":
-                    studentToUpdate.setAddress(userInput);
+                    System.out.println("Enter the address you want to update");
+                    String userAddress = sc.nextLine();
+                    studentToUpdate.setAddress(userAddress);
                     break;
                 default:
                     System.out.println("Wrong choice: ");
                     break;
             }
+            studentDAO.updateStudent(studentToUpdate);
             return studentToUpdate.toString();
 
         } else {
@@ -188,15 +189,21 @@ public class SchoolSystemManager {
             Course courseToUpdate = getCourseToUpdate(sc);
             switch (userInput) {
                 case "1":
-                    courseToUpdate.setCourseName(userInput);
+                    System.out.print("Enter the course name you want to update to: ");
+                    String courseName = sc.nextLine();
+                    courseToUpdate.setCourseName(courseName);
                     break;
                 case "2":
-                    LocalDate date = LocalDate.parse(userInput);
-                    courseToUpdate.setStartDate(date);
+                    System.out.print("Enter the course name you want to update to: ");
+                    String courseDate = sc.nextLine();
+                    LocalDate parsedDate = LocalDate.parse(courseDate);
+                    courseToUpdate.setStartDate(parsedDate);
                     break;
                 case "3":
-                    courseToUpdate.setWeekDuration(Integer.parseInt(userInput));
-                    sc.nextLine();
+                    //TODO Needs to be changed to better logic
+                    System.out.print("Enter the amount of weeks: ");
+                    int weekNum = Integer.parseInt(sc.nextLine());
+                    courseToUpdate.setWeekDuration(weekNum);
                     break;
                 default:
                     System.out.println("Wrong choice: ");
