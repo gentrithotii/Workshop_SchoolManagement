@@ -52,6 +52,7 @@ public class Course {
     }
 
     public void setWeekDuration(int weekDuration) {
+        //TODO Needs checking
         if (weekDuration <= 0) {
             throw new IllegalArgumentException("Cant have a week 0 or less!");
         }
